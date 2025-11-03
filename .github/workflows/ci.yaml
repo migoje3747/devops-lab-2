@@ -1,5 +1,8 @@
 name: CI Matrix & Reports
 
+env:
+  ENVIRONMENT: ${{ github.event.inputs.environment || 'staging' }}
+
 on:
   push:
     branches: [ "main", "dev" ]
@@ -50,7 +53,7 @@ jobs:
                 retention-days: 1
 
       - name: Print Environment
-        run: echo "Running in ${{ github.event.inputs.environment }}"
+        run: echo "Running in $ENVIRONMENT"
 
 
   report:
